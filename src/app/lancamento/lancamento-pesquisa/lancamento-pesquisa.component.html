@@ -1,0 +1,71 @@
+<div class="conteiner">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h1>Lançamento</h1>
+    </div>
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+      <div class="ui-g-12 ui-fluid">
+        <label>Descrição</label>
+        <input type="text" pInputText name="descricao" [(ngModel)]="descricao">
+      </div>
+      <div class="ui-g-12">
+        <label style="display: block">Vencimento</label>
+        <p-calendar name="dataInicio" [(ngModel)]="dataInicio" dateFormat="dd/mm/yy"></p-calendar>
+
+        <label> até </label>
+        <p-calendar name="dataFim" [(ngModel)]="dataFim" dateFormat="dd/mm/yy"></p-calendar>
+      </div>
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </form>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-table [value]="lancamentos" [paginator]="true" [rows]="5" [responsive]="true" #tableLancamento >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Pessoa</th>
+            <th>Descrição</th>
+            <th class="col-data">Vencimento</th>
+            <th class="col-data">Pagamento</th>
+            <th class="col-valor">Valor</th>
+            <th class="col-acao"></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-lancamento>
+          <tr>
+            <td>{{lancamento.pessoa.nome}}</td>
+            <td>{{lancamento.descricao}}</td>
+            <td class="col-data">{{lancamento.dataVencimento | date:'dd/MM/y'}}</td>
+            <td class="col-data">{{lancamento.dataPagamento | date:'dd/MM/y'}}</td>
+            <td [style.color]="lancamento.tipo === 'RECEITA' ? 'blue' : 'red'" class="col-valor">
+              {{lancamento.valor | currency:'BRL':'symbol':'1.2-2'}}
+              <!-- {{lancamento.valor | number:'1.2-2'}} -->
+            </td>
+            <td class="col-acao">
+              <a pButton [routerLink]="['/lancamentos', lancamento.id]" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                style="margin-right: 1px"></a>
+              <button pButton (click)="deletar(lancamento)" icon="pi pi-trash" pTooltip="Deletar" tooltipPosition="top"
+                style="margin-left: 1px;"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+          <tr>
+              <td [attr.colspan]="6">
+                  Nenhum registro encontrado
+              </td>
+          </tr>
+      </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <a pButton label="Novo Lançamento" routerLink="/lancamentos/novo"></a>
+    </div>
+  </div>
+</div>
