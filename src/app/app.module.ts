@@ -15,6 +15,7 @@ import { registerLocaleData } from '@angular/common';
 import { MessageService } from 'primeng/components/common/api';
 import { ToastModule } from 'primeng/components/toast/toast';
 import br from '@angular/common/locales/br';
+import { SegurancaModule } from './seguranca/seguranca.module';
 
 registerLocaleData(br, 'pt-BR');
 
@@ -33,6 +34,7 @@ registerLocaleData(br, 'pt-BR');
     CoreModule,
     LancamentoModule,
     PessoaModule,
+    SegurancaModule,
     AppRoutingModule
   ],
   providers: [

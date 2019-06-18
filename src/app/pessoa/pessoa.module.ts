@@ -13,7 +13,7 @@ import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtexta
 import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton';
 import { TableModule } from 'primeng/components/table/table';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
-import { RouterModule } from '@angular/router';
+import { PessoaRoutingModule } from './pessoa-routing.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule,
+
+    PessoaRoutingModule,
 
     ButtonModule,
     CalendarModule,
